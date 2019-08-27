@@ -7,4 +7,4 @@ server:
     port: 50151
 
 deliveryPort: 50052
-deliveryHost: "localhost"
+deliveryHost: "delivery.beachshirts.svc.cluster.local"

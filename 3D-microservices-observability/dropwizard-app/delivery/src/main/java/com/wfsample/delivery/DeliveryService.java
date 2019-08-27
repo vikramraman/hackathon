@@ -3,6 +3,7 @@ package com.wfsample.delivery;
 import com.wfsample.common.DropwizardServiceConfig;
 import com.wfsample.common.dto.PackedShirtsDTO;
 import com.wfsample.common.dto.DeliveryStatusDTO;
+import com.wfsample.common.instrumentation.InstrumentationHelper;
 import com.wfsample.service.DeliveryApi;
 
 import org.slf4j.Logger;
@@ -45,6 +46,7 @@ public class DeliveryService extends Application<DropwizardServiceConfig> {
   @Override
   public void run(DropwizardServiceConfig configuration, Environment environment) {
     dispatchQueue = new ConcurrentLinkedDeque<>();
+    InstrumentationHelper.instrument(environment.jersey());
     environment.jersey().register(new DeliveryWebResource());
     ScheduledExecutorServiceBuilder sesBuilder =
         environment.lifecycle().scheduledExecutorService("Clear Queue");

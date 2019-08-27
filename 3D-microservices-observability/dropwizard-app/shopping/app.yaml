@@ -8,5 +8,5 @@ server:
 
 stylingPort: 50051
 deliveryPort: 50052
-stylingHost: "localhost"
-deliveryHost: "localhost"
+stylingHost: "styling.beachshirts.svc.cluster.local"
+deliveryHost: "delivery.beachshirts.svc.cluster.local"

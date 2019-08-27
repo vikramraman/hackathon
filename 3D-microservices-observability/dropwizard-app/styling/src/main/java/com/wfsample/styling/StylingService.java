@@ -7,6 +7,7 @@ import com.wfsample.common.dto.PackedShirtsDTO;
 import com.wfsample.common.dto.ShirtDTO;
 import com.wfsample.common.dto.ShirtStyleDTO;
 import com.wfsample.common.dto.DeliveryStatusDTO;
+import com.wfsample.common.instrumentation.InstrumentationHelper;
 import com.wfsample.service.DeliveryApi;
 import com.wfsample.service.StylingApi;
 
@@ -45,8 +46,7 @@ public class StylingService extends Application<DropwizardServiceConfig> {
   public void run(DropwizardServiceConfig configuration, Environment environment) {
     String deliveryUrl = "http://" + configuration.getDeliveryHost() + ":" + configuration
         .getDeliveryPort();
-    WavefrontJaxrsClientFilter wavefrontJaxrsFilter = null;
-    // TODO: Initialize WavefrontJaxrsFilter here.
+    WavefrontJaxrsClientFilter wavefrontJaxrsFilter = InstrumentationHelper.getJaxrsFilter();
     environment.jersey().register(new StylingWebResource(
         BeachShirtsUtils.createProxyClient(deliveryUrl, DeliveryApi.class, wavefrontJaxrsFilter)));
   }

@@ -32,6 +32,11 @@
             <version>${dropwizard.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.wavefront</groupId>
+            <artifactId>wavefront-dropwizard-metrics-sdk-java</artifactId>
+            <version>0.9.5</version>
+        </dependency>
+        <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-client</artifactId>
             <version>3.0.21.Final</version>
@@ -94,7 +99,12 @@
         <dependency>
             <groupId>com.wavefront</groupId>
             <artifactId>wavefront-jaxrs-sdk-java</artifactId>
-            <version>0.9.0</version>
+            <version>0.9.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.wavefront</groupId>
+            <artifactId>wavefront-jersey-sdk-java</artifactId>
+            <version>0.9.7</version>
         </dependency>
     </dependencies>
 

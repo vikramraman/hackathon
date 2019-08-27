@@ -5,6 +5,7 @@ import com.wfsample.common.BeachShirtsUtils;
 import com.wfsample.common.DropwizardServiceConfig;
 import com.wfsample.common.dto.DeliveryStatusDTO;
 import com.wfsample.common.dto.OrderDTO;
+import com.wfsample.common.instrumentation.InstrumentationHelper;
 import com.wfsample.service.StylingApi;
 
 import org.slf4j.Logger;
@@ -47,8 +48,7 @@ public class ShoppingService extends Application<DropwizardServiceConfig> {
   public void run(DropwizardServiceConfig configuration, Environment environment) {
     String stylingUrl = "http://" + configuration.getStylingHost() + ":" + configuration
         .getStylingPort();
-    WavefrontJaxrsClientFilter wavefrontJaxrsFilter = null;
-    // TODO: Initialize WavefrontJaxrsFilter here.
+    WavefrontJaxrsClientFilter wavefrontJaxrsFilter = InstrumentationHelper.getJaxrsFilter();
     environment.jersey().register(new ShoppingWebResource(
         BeachShirtsUtils.createProxyClient(stylingUrl, StylingApi.class, wavefrontJaxrsFilter)));
   }

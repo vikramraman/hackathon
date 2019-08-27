@@ -1,0 +1,7 @@
+# Reporting with a Wavefront proxy
+reportingMechanism: "proxy"
+proxyHost: "wavefront-proxy.default.svc.cluster.local"
+proxyMetricsPort: 2878
+proxyDistributionsPort: 40000
+proxyTracingPort: 30000
+reportTraces: true
