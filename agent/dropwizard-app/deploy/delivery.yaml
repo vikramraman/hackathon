@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: delivery
+  namespace: beachshirts-agent
+  labels:
+    app: delivery
+spec:
+  ports:
+    - targetPort: 50052
+      port: 50052
+      name: http
+  selector:
+      app: delivery
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: delivery
+  namespace: beachshirts-agent
+  labels:
+    app: beachshirts-agent
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: delivery
+    spec:
+      containers:
+        - name: delivery
+          image: vikramraman/delivery-agent:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 50052

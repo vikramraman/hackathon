@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: styling
+  namespace: beachshirts-agent
+  labels:
+    app: styling
+spec:
+  ports:
+    - targetPort: 50051
+      port: 50051
+      name: http
+  selector:
+      app: styling
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: styling
+  namespace: beachshirts-agent
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: styling
+    spec:
+      containers:
+        - name: styling
+          image: vikramraman/styling-agent:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 50051
