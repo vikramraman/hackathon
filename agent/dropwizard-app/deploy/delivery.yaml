@@ -30,6 +30,13 @@ spec:
       containers:
         - name: delivery
           image: vikramraman/delivery-agent:latest
+          resources:
+            limits:
+              cpu: 100m
+              memory: 300Mi
+            requests:
+              cpu: 100m
+              memory: 300Mi
           imagePullPolicy: Always
           ports:
             - containerPort: 50052
